@@ -1,10 +1,12 @@
 import pickle
 
-def load_annotated_data():
+def load_annotated_data(csv_path: str):
     """
     Loads manually annotated dataset.
     """
-    # TO DO: Implement CSV loading logic 
+    df = pd.read_csv(csv_path)
+
+    unique_sentences = df["sentence_id"].unique()
 
 def train_and_pickle():
     # 1. Load annotated dataset - call prev function
