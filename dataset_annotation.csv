@@ -1199,7 +1199,7 @@ word_id,sentence_id,sentence,word,answer
 1198,65,Ma'am Ivana sana po matulogan niyu po ako kac po may sakit po ako sa liig tinotoboan po kac ako ng mga bukol sa liig wla po kac akong pambili ng gamot ko sana po matulongan niyu po ako ma'am ivana kakapalan kona po itong moka ko,niyu,FIL
 1199,65,Ma'am Ivana sana po matulogan niyu po ako kac po may sakit po ako sa liig tinotoboan po kac ako ng mga bukol sa liig wla po kac akong pambili ng gamot ko sana po matulongan niyu po ako ma'am ivana kakapalan kona po itong moka ko,po,FIL
 1200,65,Ma'am Ivana sana po matulogan niyu po ako kac po may sakit po ako sa liig tinotoboan po kac ako ng mga bukol sa liig wla po kac akong pambili ng gamot ko sana po matulongan niyu po ako ma'am ivana kakapalan kona po itong moka ko,ako,FIL
-1201,65,Ma'am Ivana sana po matulogan niyu po ako kac po may sakit po ako sa liig tinotoboan po kac ako ng mga bukol sa liig wla po kac akong pambili ng gamot ko sana po matulongan niyu po ako ma'am ivana kakapalan kona po itong moka ko,ma'am,ENF
+1201,65,Ma'am Ivana sana po matulogan niyu po ako kac po may sakit po ako sa liig tinotoboan po kac ako ng mga bukol sa liig wla po kac akong pambili ng gamot ko sana po matulongan niyu po ako ma'am ivana kakapalan kona po itong moka ko,ma'am,ENG
 1202,65,Ma'am Ivana sana po matulogan niyu po ako kac po may sakit po ako sa liig tinotoboan po kac ako ng mga bukol sa liig wla po kac akong pambili ng gamot ko sana po matulongan niyu po ako ma'am ivana kakapalan kona po itong moka ko,ivana,OTH
 1203,65,Ma'am Ivana sana po matulogan niyu po ako kac po may sakit po ako sa liig tinotoboan po kac ako ng mga bukol sa liig wla po kac akong pambili ng gamot ko sana po matulongan niyu po ako ma'am ivana kakapalan kona po itong moka ko,kakapalan,FIL
 1204,65,Ma'am Ivana sana po matulogan niyu po ako kac po may sakit po ako sa liig tinotoboan po kac ako ng mga bukol sa liig wla po kac akong pambili ng gamot ko sana po matulongan niyu po ako ma'am ivana kakapalan kona po itong moka ko,kona,FIL
@@ -1470,7 +1470,7 @@ word_id,sentence_id,sentence,word,answer
 1469,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,Anak,FIL
 1470,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,",",OTH
 1471,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . ""","""",OTH
-1472,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,nan,FIL
+1472,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,nan,OTH
 1473,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,at,FIL
 1474,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . ""","""",OTH
 1475,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,I,OTH
@@ -1478,7 +1478,7 @@ word_id,sentence_id,sentence,word,answer
 1477,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,you,ENG
 1478,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,.,OTH
 1479,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . ""","""",OTH
-1480,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,nan,FIL
+1480,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,nan,OTH
 1481,83,Sa sobrang pag titipid ng gobyerno ayan buhay ng mga sundalo natin ang naka taya .,Sa,FIL
 1482,83,Sa sobrang pag titipid ng gobyerno ayan buhay ng mga sundalo natin ang naka taya .,sobrang,FIL
 1483,83,Sa sobrang pag titipid ng gobyerno ayan buhay ng mga sundalo natin ang naka taya .,pag,FIL
@@ -1712,7 +1712,7 @@ word_id,sentence_id,sentence,word,answer
 1711,99,"Layon ng SMC , sabi ni Ang , na linisin ang mga pangunahing ilog at mga dinadaluyan nito na barado ng mga basura at burak sa nakalipas na maraming dekada kung kayat hindi maayos ang pag-agos ng tubig baha patungo sa Manila Bay .",Layon,FIL
 1712,99,"Layon ng SMC , sabi ni Ang , na linisin ang mga pangunahing ilog at mga dinadaluyan nito na barado ng mga basura at burak sa nakalipas na maraming dekada kung kayat hindi maayos ang pag-agos ng tubig baha patungo sa Manila Bay .",ng,FIL
 1713,99,"Layon ng SMC , sabi ni Ang , na linisin ang mga pangunahing ilog at mga dinadaluyan nito na barado ng mga basura at burak sa nakalipas na maraming dekada kung kayat hindi maayos ang pag-agos ng tubig baha patungo sa Manila Bay .",SMC,OTH
-1714,99,"Layon ng SMC , sabi ni Ang , na linisin ang mga pangunahing ilog at mga dinadaluyan nito na barado ng mga basura at burak sa nakalipas na maraming dekada kung kayat hindi maayos ang pag-agos ng tubig baha patungo sa Manila Bay .",",",OHT
+1714,99,"Layon ng SMC , sabi ni Ang , na linisin ang mga pangunahing ilog at mga dinadaluyan nito na barado ng mga basura at burak sa nakalipas na maraming dekada kung kayat hindi maayos ang pag-agos ng tubig baha patungo sa Manila Bay .",",",OTH
 1715,99,"Layon ng SMC , sabi ni Ang , na linisin ang mga pangunahing ilog at mga dinadaluyan nito na barado ng mga basura at burak sa nakalipas na maraming dekada kung kayat hindi maayos ang pag-agos ng tubig baha patungo sa Manila Bay .",sabi,FIL
 1716,99,"Layon ng SMC , sabi ni Ang , na linisin ang mga pangunahing ilog at mga dinadaluyan nito na barado ng mga basura at burak sa nakalipas na maraming dekada kung kayat hindi maayos ang pag-agos ng tubig baha patungo sa Manila Bay .",ni,FIL
 1717,99,"Layon ng SMC , sabi ni Ang , na linisin ang mga pangunahing ilog at mga dinadaluyan nito na barado ng mga basura at burak sa nakalipas na maraming dekada kung kayat hindi maayos ang pag-agos ng tubig baha patungo sa Manila Bay .",Ang,FIL
@@ -2276,7 +2276,7 @@ word_id,sentence_id,sentence,word,answer
 2275,131,Umaasa ang grupo ng mga poultry raiser na makakabawi na sila sa kita matapos luwagan ang pagbiyahe ng hayop galing sa mga lugar na tinamaan noon ng bird flu .,ng,FIL
 2276,131,Umaasa ang grupo ng mga poultry raiser na makakabawi na sila sa kita matapos luwagan ang pagbiyahe ng hayop galing sa mga lugar na tinamaan noon ng bird flu .,mga,FIL
 2277,131,Umaasa ang grupo ng mga poultry raiser na makakabawi na sila sa kita matapos luwagan ang pagbiyahe ng hayop galing sa mga lugar na tinamaan noon ng bird flu .,poultry,ENG
-2278,131,Umaasa ang grupo ng mga poultry raiser na makakabawi na sila sa kita matapos luwagan ang pagbiyahe ng hayop galing sa mga lugar na tinamaan noon ng bird flu .,raiser,EGNG
+2278,131,Umaasa ang grupo ng mga poultry raiser na makakabawi na sila sa kita matapos luwagan ang pagbiyahe ng hayop galing sa mga lugar na tinamaan noon ng bird flu .,raiser,ENG
 2279,131,Umaasa ang grupo ng mga poultry raiser na makakabawi na sila sa kita matapos luwagan ang pagbiyahe ng hayop galing sa mga lugar na tinamaan noon ng bird flu .,na,FIL
 2280,131,Umaasa ang grupo ng mga poultry raiser na makakabawi na sila sa kita matapos luwagan ang pagbiyahe ng hayop galing sa mga lugar na tinamaan noon ng bird flu .,makakabawi,FIL
 2281,131,Umaasa ang grupo ng mga poultry raiser na makakabawi na sila sa kita matapos luwagan ang pagbiyahe ng hayop galing sa mga lugar na tinamaan noon ng bird flu .,na,FIL
@@ -4643,7 +4643,7 @@ word_id,sentence_id,sentence,word,answer
 4642,274,"Ang mga tauhan sa kuwentong ito ay isang mataas na bundok , isang munting sapa , isang malakas na hangin , at isang napakalaking alon .",isang,FIL
 4643,274,"Ang mga tauhan sa kuwentong ito ay isang mataas na bundok , isang munting sapa , isang malakas na hangin , at isang napakalaking alon .",napakalaking,FIL
 4644,274,"Ang mga tauhan sa kuwentong ito ay isang mataas na bundok , isang munting sapa , isang malakas na hangin , at isang napakalaking alon .",alon,FIL
-4645,274,"Ang mga tauhan sa kuwentong ito ay isang mataas na bundok , isang munting sapa , isang malakas na hangin , at isang napakalaking alon .",.,OT
+4645,274,"Ang mga tauhan sa kuwentong ito ay isang mataas na bundok , isang munting sapa , isang malakas na hangin , at isang napakalaking alon .",.,OTH
 4646,275,"Noong , bumalik si Padilla sa ABS-CBN matapos pumirma ng isang eksklusibong kontrata sa Dreamscape Entertainment Television , isa sa mga sikat na assets ng ABS-CBN , at ginampanan ang papel bilang Carmen sa hit na teleseryeng .",Noong,FIL
 4647,275,"Noong , bumalik si Padilla sa ABS-CBN matapos pumirma ng isang eksklusibong kontrata sa Dreamscape Entertainment Television , isa sa mga sikat na assets ng ABS-CBN , at ginampanan ang papel bilang Carmen sa hit na teleseryeng .",",",OTH
 4648,275,"Noong , bumalik si Padilla sa ABS-CBN matapos pumirma ng isang eksklusibong kontrata sa Dreamscape Entertainment Television , isa sa mga sikat na assets ng ABS-CBN , at ginampanan ang papel bilang Carmen sa hit na teleseryeng .",bumalik,FIL
@@ -7247,7 +7247,7 @@ word_id,sentence_id,sentence,word,answer
 7246,447,Kilala ang Eastwood City sa paglalagay ng Walk of Fame para sa mga kilalang celebrity sa Pilipinas .,Kilala,FIL
 7247,447,Kilala ang Eastwood City sa paglalagay ng Walk of Fame para sa mga kilalang celebrity sa Pilipinas .,ang,FIL
 7248,447,Kilala ang Eastwood City sa paglalagay ng Walk of Fame para sa mga kilalang celebrity sa Pilipinas .,Eastwood,ENG
-7249,447,Kilala ang Eastwood City sa paglalagay ng Walk of Fame para sa mga kilalang celebrity sa Pilipinas .,City,e
+7249,447,Kilala ang Eastwood City sa paglalagay ng Walk of Fame para sa mga kilalang celebrity sa Pilipinas .,City,ENG
 7250,447,Kilala ang Eastwood City sa paglalagay ng Walk of Fame para sa mga kilalang celebrity sa Pilipinas .,sa,FIL
 7251,447,Kilala ang Eastwood City sa paglalagay ng Walk of Fame para sa mga kilalang celebrity sa Pilipinas .,paglalagay,FIL
 7252,447,Kilala ang Eastwood City sa paglalagay ng Walk of Fame para sa mga kilalang celebrity sa Pilipinas .,ng,FIL
@@ -7659,7 +7659,7 @@ word_id,sentence_id,sentence,word,answer
 7658,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .",Night,ENG
 7659,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .",",",OTH
 7660,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .","""",OTH
-7661,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .",nan,FIL
+7661,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .",nan,OTH
 7662,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .",dahil,FIL
 7663,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .",sa,FIL
 7664,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .",gabi,FIL
@@ -17696,7 +17696,7 @@ word_id,sentence_id,sentence,word,answer
 17695,1093,"Sa mga tuntunin ng kaligtasan , isang pagsusuri ng 44 , 000 katao ang nagpakita na ito ay generally well tolerated , na may karaniwang mga epekto tulad ng kirot sa injection-site , sakit ng ulo , pagkapagod at pananakit ng kalamnan .",ng,FIL
 17696,1093,"Sa mga tuntunin ng kaligtasan , isang pagsusuri ng 44 , 000 katao ang nagpakita na ito ay generally well tolerated , na may karaniwang mga epekto tulad ng kirot sa injection-site , sakit ng ulo , pagkapagod at pananakit ng kalamnan .",kalamnan,FIL
 17697,1093,"Sa mga tuntunin ng kaligtasan , isang pagsusuri ng 44 , 000 katao ang nagpakita na ito ay generally well tolerated , na may karaniwang mga epekto tulad ng kirot sa injection-site , sakit ng ulo , pagkapagod at pananakit ng kalamnan .",.,OTH
-17698,1094,Kasi alam ko sa sarili ko na kailangan kong gawin yon kasi pag nagpa-relax-relax lang ako alam naman natin na hindi ko mabibigyan ng hustisya yung role ko .,Kasi,
+17698,1094,Kasi alam ko sa sarili ko na kailangan kong gawin yon kasi pag nagpa-relax-relax lang ako alam naman natin na hindi ko mabibigyan ng hustisya yung role ko .,Kasi,FIL
 17699,1094,Kasi alam ko sa sarili ko na kailangan kong gawin yon kasi pag nagpa-relax-relax lang ako alam naman natin na hindi ko mabibigyan ng hustisya yung role ko .,alam,FIL
 17700,1094,Kasi alam ko sa sarili ko na kailangan kong gawin yon kasi pag nagpa-relax-relax lang ako alam naman natin na hindi ko mabibigyan ng hustisya yung role ko .,ko,FIL
 17701,1094,Kasi alam ko sa sarili ko na kailangan kong gawin yon kasi pag nagpa-relax-relax lang ako alam naman natin na hindi ko mabibigyan ng hustisya yung role ko .,sa,FIL
@@ -18615,7 +18615,7 @@ word_id,sentence_id,sentence,word,answer
 18614,1160,"Ang mga naturang mutation na natukoy sa Visayas ay natukoy na rin sa variants sa ibang bansa , gaya ng UK variant , South African at Brazilian .",",",OTH
 18615,1160,"Ang mga naturang mutation na natukoy sa Visayas ay natukoy na rin sa variants sa ibang bansa , gaya ng UK variant , South African at Brazilian .",South,ENG
 18616,1160,"Ang mga naturang mutation na natukoy sa Visayas ay natukoy na rin sa variants sa ibang bansa , gaya ng UK variant , South African at Brazilian .",African,OTH
-18617,1160,"Ang mga naturang mutation na natukoy sa Visayas ay natukoy na rin sa variants sa ibang bansa , gaya ng UK variant , South African at Brazilian .",at,
+18617,1160,"Ang mga naturang mutation na natukoy sa Visayas ay natukoy na rin sa variants sa ibang bansa , gaya ng UK variant , South African at Brazilian .",at,FIL
 18618,1160,"Ang mga naturang mutation na natukoy sa Visayas ay natukoy na rin sa variants sa ibang bansa , gaya ng UK variant , South African at Brazilian .",Brazilian,OTH
 18619,1160,"Ang mga naturang mutation na natukoy sa Visayas ay natukoy na rin sa variants sa ibang bansa , gaya ng UK variant , South African at Brazilian .",.,OTH
 18620,1162,"Inisip ko pa nga na , Tingin nyo mas magaling kayo sa akin ?",Inisip,FIL
@@ -30613,7 +30613,7 @@ word_id,sentence_id,sentence,word,answer
 30612,1899,"Makikita rin kasi sa mga litratong ibinahagi ni Andrea na kasama niya ang mga kaibigan sa showbiz na sina AC Bonifacio , Jeremy Glinoga , Awra Briguela , Darren Espanto , at iba pa . Sa 19th birthday naman ni Andrea , pinutakti ng mga netizen ang birthday message ni Ricci para kay Blythe .",mga,FIL
 30613,1899,"Makikita rin kasi sa mga litratong ibinahagi ni Andrea na kasama niya ang mga kaibigan sa showbiz na sina AC Bonifacio , Jeremy Glinoga , Awra Briguela , Darren Espanto , at iba pa . Sa 19th birthday naman ni Andrea , pinutakti ng mga netizen ang birthday message ni Ricci para kay Blythe .",kaibigan,FIL
 30614,1899,"Makikita rin kasi sa mga litratong ibinahagi ni Andrea na kasama niya ang mga kaibigan sa showbiz na sina AC Bonifacio , Jeremy Glinoga , Awra Briguela , Darren Espanto , at iba pa . Sa 19th birthday naman ni Andrea , pinutakti ng mga netizen ang birthday message ni Ricci para kay Blythe .",sa,FIL
-30615,1899,"Makikita rin kasi sa mga litratong ibinahagi ni Andrea na kasama niya ang mga kaibigan sa showbiz na sina AC Bonifacio , Jeremy Glinoga , Awra Briguela , Darren Espanto , at iba pa . Sa 19th birthday naman ni Andrea , pinutakti ng mga netizen ang birthday message ni Ricci para kay Blythe .",showbiz,
+30615,1899,"Makikita rin kasi sa mga litratong ibinahagi ni Andrea na kasama niya ang mga kaibigan sa showbiz na sina AC Bonifacio , Jeremy Glinoga , Awra Briguela , Darren Espanto , at iba pa . Sa 19th birthday naman ni Andrea , pinutakti ng mga netizen ang birthday message ni Ricci para kay Blythe .",showbiz,ENG
 30616,1899,"Makikita rin kasi sa mga litratong ibinahagi ni Andrea na kasama niya ang mga kaibigan sa showbiz na sina AC Bonifacio , Jeremy Glinoga , Awra Briguela , Darren Espanto , at iba pa . Sa 19th birthday naman ni Andrea , pinutakti ng mga netizen ang birthday message ni Ricci para kay Blythe .",na,FIL
 30617,1899,"Makikita rin kasi sa mga litratong ibinahagi ni Andrea na kasama niya ang mga kaibigan sa showbiz na sina AC Bonifacio , Jeremy Glinoga , Awra Briguela , Darren Espanto , at iba pa . Sa 19th birthday naman ni Andrea , pinutakti ng mga netizen ang birthday message ni Ricci para kay Blythe .",sina,FIL
 30618,1899,"Makikita rin kasi sa mga litratong ibinahagi ni Andrea na kasama niya ang mga kaibigan sa showbiz na sina AC Bonifacio , Jeremy Glinoga , Awra Briguela , Darren Espanto , at iba pa . Sa 19th birthday naman ni Andrea , pinutakti ng mga netizen ang birthday message ni Ricci para kay Blythe .",AC,OTH
@@ -37389,7 +37389,7 @@ word_id,sentence_id,sentence,word,answer
 37388,2307,"Gayunman , kinilala rin ni Vergeire ang posibilidad na may mga taong gumagamit na lamang ng antigen home test kits upang alamin kung positibo sila sa virus o hindi .",.,OTH
 37389,2308,Handang-handa na rin kaming mga pwersa ng oposisyon na nagkakaisa sa likod ni VP Leni para itulak ang kanyang kandidatura sa pagka-pangulo .,Handang-handa,FIL
 37390,2308,Handang-handa na rin kaming mga pwersa ng oposisyon na nagkakaisa sa likod ni VP Leni para itulak ang kanyang kandidatura sa pagka-pangulo .,na,FIL
-37391,2308,Handang-handa na rin kaming mga pwersa ng oposisyon na nagkakaisa sa likod ni VP Leni para itulak ang kanyang kandidatura sa pagka-pangulo .,rin,
+37391,2308,Handang-handa na rin kaming mga pwersa ng oposisyon na nagkakaisa sa likod ni VP Leni para itulak ang kanyang kandidatura sa pagka-pangulo .,rin,FIL
 37392,2308,Handang-handa na rin kaming mga pwersa ng oposisyon na nagkakaisa sa likod ni VP Leni para itulak ang kanyang kandidatura sa pagka-pangulo .,kaming,FIL
 37393,2308,Handang-handa na rin kaming mga pwersa ng oposisyon na nagkakaisa sa likod ni VP Leni para itulak ang kanyang kandidatura sa pagka-pangulo .,mga,FIL
 37394,2308,Handang-handa na rin kaming mga pwersa ng oposisyon na nagkakaisa sa likod ni VP Leni para itulak ang kanyang kandidatura sa pagka-pangulo .,pwersa,FIL
@@ -41481,7 +41481,7 @@ word_id,sentence_id,sentence,word,answer
 41480,2579,""" Mga dilawan tae ! """,tae,FIL
 41481,2579,""" Mga dilawan tae ! """,!,OTH
 41482,2579,""" Mga dilawan tae ! ""","""",OTH
-41483,2579,""" Mga dilawan tae ! """,nan,FIL
+41483,2579,""" Mga dilawan tae ! """,nan,OTH
 41484,2580,"Operational na ito , ang Alegria Singapura sa may Teck Lim Road .",Operational,ENG
 41485,2580,"Operational na ito , ang Alegria Singapura sa may Teck Lim Road .",na,FIL
 41486,2580,"Operational na ito , ang Alegria Singapura sa may Teck Lim Road .",ito,FIL
