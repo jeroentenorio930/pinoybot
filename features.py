@@ -79,8 +79,8 @@ def extract_ngram (word: str) -> Dict[str, Any]:
     features["vowel_ratio"] = vowel_count / word_length if word_length > 0 else 0.0
 
     # check if naulit yung syllable (idk how to call it)
-    features["has_2char_reduplication"] = (word_length >= 4 and word_lower[:2] == word_lower[2:4])
-    features["has_3char_reduplication"] = (word_length >= 6 and word_lower[:3] == word_lower[3:6])
+    # features["has_2char_reduplication"] = (word_length >= 4 and word_lower[:2] == word_lower[2:4])
+    # features["has_3char_reduplication"] = (word_length >= 6 and word_lower[:3] == word_lower[3:6])
 
     return features
 
@@ -125,6 +125,61 @@ def extract_context(tokens: List[str], index: int) -> Dict[str, Any]:
 
 # End of JR
 
+# start of drea
+
+def extract_symbols_and_numbers(word:str) -> Dict[str,Any]:
+    """
+    this extracts features that detect whether a word contains numbers or symbols.
+    it ignores the hyphen, except for when the token is a single-character symbol.
+    """
+    features = {
+        "is_symbol": False
+    }
+
+    # check if the word is a single-character symbol 
+    if len(word) == 1 and word in string.punctuation:
+        features["is_symbol"] = True
+
+    # check for any numbers
+    features["contains_number"] = bool(re.search(r'\d', word))
+
+    # check for characters that are not letters, numbers, or hyphen
+    features["contains_symbol"] = bool(re.search(r'[^a-zA-Z0-9\-]', word))
+
+    return features
+
+def extract_reduplication(word_lower:str) -> Dict[str, Any]:
+    """
+    this extracts features that have filipino reduplication by checking
+    the first four letters of the word to see whether it follows the 
+    CVCV structure for digrams and CCVCCV for trigrams.
+    """
+
+    features = {
+        "has_digram_reduplication": False,
+        "has_trigram_reduplication": False
+    }
+
+    if len(word_lower) >= 6:
+        first_digram = word_lower[:2]
+        second_digram = word_lower[2:4]
+
+        # check if digrams are the same and if the first one follows CV structure
+        if first_digram == second_digram and re.match(r'[^aeiou][aeiou]', first_digram):
+            features["has_digram_reduplication"] = True
+        
+        first_trigram = word_lower[:3]
+        second_trigram = word_lower[3:6]
+
+        # check if trigrams are the same and if the first one follows CCV structure
+        if first_trigram == second_trigram and re.match(r'[^aeiou][^aeiou][aeiou]', first_trigram):
+            features["has_trigram_reduplication"] = True
+
+    return features
+
+# end of drea
+
+
 def extract_word_features(tokens: List[str], index: int) -> Dict[str, Any]:
     """
     Extracts linguistic features for a token at a specific index.
@@ -140,6 +195,8 @@ def extract_word_features(tokens: List[str], index: int) -> Dict[str, Any]:
     features.update(extract_hyphen_affix_features(word))
     features.update(extract_ngram(word))
     features.update(extract_context(tokens, index))
+    features.update(extract_symbols_and_numbers(word))
+    features.update(extract_reduplication(word_lower))
 
     return features
 
