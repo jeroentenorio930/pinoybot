@@ -78,6 +78,10 @@ def extract_ngram (word: str) -> Dict[str, Any]:
     vowel_count = sum(1 for char in word_lower if char in vowels)
     features["vowel_ratio"] = vowel_count / word_length if word_length > 0 else 0.0
 
+    # check if naulit yung syllable (idk how to call it)
+    features["has_2char_reduplication"] = (word_length >= 4 and word_lower[:2] == word_lower[2:4])
+    features["has_3char_reduplication"] = (word_length >= 6 and word_lower[:3] == word_lower[3:6])
+
     return features
 
 def extract_context(tokens: List[str], index: int) -> Dict[str, Any]:
@@ -99,10 +103,12 @@ def extract_context(tokens: List[str], index: int) -> Dict[str, Any]:
         
         # grammatical context: does the previous word end in a vowel? 
         features["prev_word_ends_vowel"] = prev_word.lower()[-1] in "aeiou" if prev_word else False
+        features["prev_word_is_capitalized"] = prev_word.istitle()
     else:
         # padding
         features["prev_word_lower"] = "<START>"
         features["prev_word_ends_vowel"] = False
+        features["prev_word_is_capitalized"] = False
 
     # next word
     if index < len(tokens) - 1:
