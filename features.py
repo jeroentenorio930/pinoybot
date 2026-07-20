@@ -51,6 +51,74 @@ def extract_hyphen_affix_features(word: str) -> Dict[str, Any]:
 
     return features
 
+# This is JR
+def extract_ngram (word: str) -> Dict[str, Any]:
+    """
+    this extracts internal structure features of the word, including character n-grams 
+    and word properties like capitalization and vowel ratios.
+    """
+    word_lower = word.lower()
+    word_length = len(word)
+    
+    features = {}
+
+    # n-grams (prefixes and suffixes)
+    features["prefix_2"] = word_lower[:2] if word_length >= 2 else word_lower
+    features["prefix_3"] = word_lower[:3] if word_length >= 3 else word_lower
+    
+    features["suffix_2"] = word_lower[-2:] if word_length >= 2 else word_lower
+    features["suffix_3"] = word_lower[-3:] if word_length >= 3 else word_lower
+
+    # word properties
+    features["is_capitalized"] = word.istitle()
+    features["is_all_uppercase"] = word.isupper()
+    
+    # check language pattern
+    vowels = set("aeiou")
+    vowel_count = sum(1 for char in word_lower if char in vowels)
+    features["vowel_ratio"] = vowel_count / word_length if word_length > 0 else 0.0
+
+    return features
+
+def extract_context(tokens: List[str], index: int) -> Dict[str, Any]:
+    """
+    this extracts features based on the surrounding environment of the target word 
+    (previous and next words) to capture context clues.
+    """
+    features = {}
+    
+    # sentence end flags
+    features["is_start_of_sentence"] = (index == 0)
+    features["is_end_of_sentence"] = (index == len(tokens) - 1)
+
+    # previous word
+    if index > 0:
+        prev_word = tokens[index - 1]
+        
+        features["prev_word_lower"] = prev_word.lower()
+        
+        # grammatical context: does the previous word end in a vowel? 
+        features["prev_word_ends_vowel"] = prev_word.lower()[-1] in "aeiou" if prev_word else False
+    else:
+        # padding
+        features["prev_word_lower"] = "<START>"
+        features["prev_word_ends_vowel"] = False
+
+    # next word
+    if index < len(tokens) - 1:
+        next_word = tokens[index + 1]
+        
+        features["next_word_lower"] = next_word.lower()
+        features["next_word_is_capitalized"] = next_word.istitle()
+    else:
+
+        features["next_word_lower"] = "<END>"
+        features["next_word_is_capitalized"] = False
+
+    return features
+
+# End of JR
+
 def extract_word_features(tokens: List[str], index: int) -> Dict[str, Any]:
     """
     Extracts linguistic features for a token at a specific index.
@@ -64,6 +132,8 @@ def extract_word_features(tokens: List[str], index: int) -> Dict[str, Any]:
     features = {}
 
     features.update(extract_hyphen_affix_features(word))
+    features.update(extract_ngram(word))
+    features.update(extract_context(tokens, index))
 
     return features
 
