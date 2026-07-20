@@ -11,21 +11,24 @@ Usage:
 Produces:
     annotated_dataset_clean.csv  -- the file train.py's load_annotated_data()
                                      reads from.
+    words_with_nan.csv           -- rows that were dropped, for manual review.
 
 NOTE: tag typos (ENF/OHT/EGNG/OT/e) and the tag=NaN rows have already been
 manually corrected to their proper values (e.g. NaN -> OTH) directly in
 dataset_annotation.csv. The TAG_TYPO_MAP below is kept only as a safety net
 in case a typo slips back in later -- it won't affect already-fixed rows.
 
-NOTE: rows with a missing `word` cell (23 rows, mostly dropped quote-mark
-tokens, all already tagged OTH) are NOT dropped. Dropping them mid-sentence
-would shift token positions and break prev/next-word context features for
-the words next to them. Instead, the missing cell is filled with the
-literal placeholder string "nan" and the row is kept in place.
-
-IMPORTANT for whoever writes n-gram/context features: "nan" appears as a
-literal token string in the clean dataset (not a missing value) -- treat it
-as an ordinary word, don't filter it out or special-case it.
+NOTE (superseded 2026-07-20): earlier versions of this script filled the 23
+rows with a missing `word` cell with the literal placeholder string "nan"
+to preserve sentence-position alignment. The team has since decided to
+treat these as genuinely missing and DROP them instead, matching what was
+being done manually in R (r_data_cleaning.R). This script now does that
+drop directly, so the separate R step is no longer needed -- everyone
+should regenerate annotated_dataset_clean.csv from this single script
+instead of running R afterward. If any manual tag corrections were made
+directly on nan_removed_41884rows.csv, make sure the SAME corrections are
+also applied to dataset_annotation.csv (the raw source), otherwise re-running
+this script will produce a clean CSV that doesn't reflect those fixes.
 """
 
 import pandas as pd
@@ -44,7 +47,7 @@ TAG_TYPO_MAP = {
 def compile_dataset(
     input_csv: str = "dataset_annotation.csv",
     output_csv: str = "annotated_dataset_clean.csv",
-    flagged_csv: str = "flagged_for_review.csv",
+    flagged_csv: str = "words_with_nan.csv",
 ) -> pd.DataFrame:
     """
     Cleans the final annotated CSV into a tidy version with columns:
@@ -54,11 +57,10 @@ def compile_dataset(
       1. Rename raw columns (word -> token, answer -> tag).
       2. Strip whitespace from tags (e.g. "FIL " -> "FIL").
       3. Auto-correct any remaining known typo tags via TAG_TYPO_MAP (safety net).
-      4. Fill missing `word` cells with the literal placeholder "nan"
-         (kept in place, not dropped, to preserve sentence/context
-         alignment for neighboring tokens). Drop rows whose tag is still
-         invalid after correction -- these are written to `flagged_csv`
-         for manual review, not guessed.
+      4. Drop rows with a missing `word` cell (23 rows, mostly dropped
+         quote-mark tokens) and rows whose tag is still invalid after
+         correction -- both are written to `flagged_csv` for the record,
+         not silently discarded.
       5. Recompute token_id as position-within-sentence (word_id in the
          source file is a GLOBAL row counter, not a per-sentence index).
       6. Drop exact duplicate (sentence_id, token_id, token, tag) rows.
@@ -85,18 +87,18 @@ def compile_dataset(
               f"{df.loc[bad_tag_mask, 'tag'].unique().tolist()}")
     df = df[~bad_tag_mask]
 
-    # --- missing token handling ---
-    # Kept in place (not dropped) so sentence structure and token positions
-    # stay intact for neighboring words' context features. Filled with the
-    # literal placeholder string "nan" rather than guessed.
+    # --- missing token cleanup ---
+    # Team decision: treat these as genuinely missing and drop, rather than
+    # filling with a placeholder. Logged to flagged_csv either way.
     null_token_mask = df["token"].isnull()
     if null_token_mask.any():
-        print(f"[compile_dataset] filling {null_token_mask.sum()} missing token cells with placeholder 'nan'")
-    df["token"] = df["token"].fillna("nan")
+        flagged_frames.append(df[null_token_mask].assign(reason="missing_token"))
+        print(f"[compile_dataset] dropping {null_token_mask.sum()} rows with missing token text")
+    df = df[~null_token_mask]
 
     if flagged_frames:
         pd.concat(flagged_frames, ignore_index=True).to_csv(flagged_csv, index=False)
-        print(f"[compile_dataset] wrote flagged rows -> {flagged_csv} (please review as a team)")
+        print(f"[compile_dataset] wrote flagged/dropped rows -> {flagged_csv} (for the record)")
     else:
         print("[compile_dataset] no rows flagged -- dataset is clean")
 
@@ -126,5 +128,5 @@ if __name__ == "__main__":
     compile_dataset(
         input_csv="dataset_annotation.csv",
         output_csv="annotated_dataset_clean.csv",
-        flagged_csv="flagged_for_review.csv",
+        flagged_csv="words_with_nan.csv",
     )

@@ -1,0 +1,24 @@
+word_id,sentence_id,sentence,token,tag,reason
+1472,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,,OTH,missing_token
+1480,82,"Naiyak ako doon sa sinabi ng tatay na "" Anak , ""  at "" I love you . """,,OTH,missing_token
+1930,110,"""  Inay , maghahanap po ako bukas ng trabaho .",,OTH,missing_token
+3105,171,"Sabihin mo : "" Kaya hindi ba kayo mangingilag magkasala ? """,,OTH,missing_token
+6419,379,"Gusto Niya nakagawa ka pa ng mabuti . """,,OTH,missing_token
+7661,476,"Ang naturang halaman na tila "" one-night "" only kung magtanghal ay tinatawag na "" Queen of the Night , ""  dahil sa gabi lang siya namumukadkad at isang beses lang mangyari sa isang taon .",,OTH,missing_token
+8147,511,"""  Ako ang matsong daga na babantay sa 'yo .",,OTH,missing_token
+8691,541,"Siguro sa isang linggo tatlong araw lang na merong dumadating so mahihirapan talaga , ""  ani Rosendo So , chairman ng SINAG Sabi rin ng DA na patuloy nilang hinihimok ang mga hog raiser at trader na magdala ng mga baboy sa Metro Manila dahil sagot naman ng ahensiya ang transport .",,OTH,missing_token
+8973,557,"Natawa ako kay mona "" Kelan ka pa ngka jowa ? """,,OTH,missing_token
+9065,563,"Ako po si Justin ang pangalan ko . """,,OTH,missing_token
+10983,692,"""  Ipagpaumanhin ninyo pero gusto ko lang kumuha ng tubig .",,OTH,missing_token
+16046,993,"They say "" Nagcacancer yan kasi umalis sa iglesia "" , ""  Namatay yan kasi parusa ng Dyos sa kanya ng umalis sya . """,,OTH,missing_token
+16060,993,"They say "" Nagcacancer yan kasi umalis sa iglesia "" , ""  Namatay yan kasi parusa ng Dyos sa kanya ng umalis sya . """,,OTH,missing_token
+17620,1089,"Bakit ba kasi nag-celebrate ng New Year kasama ang mga kaibigan ? """,,OTH,missing_token
+22225,1378,"Sabihin mo : "" Tunay na ako ay sinaway na sumamba sa mga dinadalanginan ninyo bukod pa kay Allh , noong dumating sa akin ang mga malinaw na patunay mula sa Panginoon ko , at inutusan na magpasakop sa Panginoon ng mga nilalang . """,,OTH,missing_token
+23520,1459,"""  Tinulungan niyang isara ang zipper ng damit ni Maria .",,OTH,missing_token
+24380,1514,"""  Huwag kang gumawa ng iskandalo rito , ""  ani Vida kay Maria .",,OTH,missing_token
+24389,1514,"""  Huwag kang gumawa ng iskandalo rito , ""  ani Vida kay Maria .",,OTH,missing_token
+35005,2168,"Kaunti ang pinasasalamatan ninyo ! """,,OTH,missing_token
+38158,2352,"Pagkatapos ng ilang araw , sasabihin sa 'yo , "" Pa'no ka ba nagka ( insert merit ) ? """,,OTH,missing_token
+38516,2376,"""  Dahil wala pang kumalas sa grupo ni Dorong Dulas nang hindi nakatikim ng maagang kamatayan .",,OTH,missing_token
+38881,2395,"Kaya umiwas ka sa kanila at magsabi ka : "" Kapayapaan ! """,,OTH,missing_token
+41483,2579,""" Mga dilawan tae ! """,,OTH,missing_token

@@ -14,7 +14,9 @@ Pipeline:
 
 NOTE: dataset_annotation.csv must already be cleaned via compile_dataset.py
 (run separately, once) into annotated_dataset_clean.csv before this script
-is run. See compile_dataset.py for details on what cleaning is applied.
+is run. See compile_dataset.py for details on what cleaning is applied,
+including the decision to DROP rows with missing token text rather than
+placeholder-fill them.
 """
 
 import pickle
@@ -34,12 +36,7 @@ def load_annotated_data(csv_path: str):
         sentences: List[List[str]]  -- tokens per sentence
         tags:      List[List[str]]  -- tag per token, same shape as sentences
     """
-    # keep_default_na=False / na_filter=False: without this, pandas silently
-    # re-interprets the literal placeholder string "nan" (used for the 23
-    # rows with originally-missing word text) as a real missing value again
-    # on read, undoing the fix made in compile_dataset.py. There are no
-    # genuinely-missing cells left in the clean CSV, so this is safe.
-    df = pd.read_csv(csv_path, keep_default_na=False, na_filter=False)
+    df = pd.read_csv(csv_path)
     df["tag"] = df["tag"].astype(str).str.strip().str.upper()
 
     sentences, tags = [], []

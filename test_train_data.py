@@ -29,10 +29,15 @@ def run_tests():
     assert not bad_tags, f"found invalid tags: {bad_tags}"
     print(f"PASS: all tags valid, tags seen = {sorted(all_tags)}")
 
-    # --- the "nan" placeholder survives as literal text, not a missing value ---
+    # --- missing-token rows should have been dropped entirely, not kept as
+    #     a literal "nan" placeholder (team decision, superseded the earlier
+    #     placeholder-fill approach) ---
     has_literal_nan = any("nan" in s for s in sentences)
-    assert has_literal_nan, "expected literal 'nan' placeholder tokens to be present"
-    print("PASS: literal 'nan' placeholder tokens preserved (not treated as missing)")
+    assert not has_literal_nan, (
+        "found literal 'nan' token(s) -- these rows should have been dropped "
+        "by compile_dataset.py, not kept as placeholders"
+    )
+    print("PASS: no literal 'nan' placeholder tokens present (correctly dropped)")
 
     # --- no empty-string or None tokens slipped through ---
     for s in sentences:
