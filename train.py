@@ -29,6 +29,7 @@ from sklearn.metrics import accuracy_score, f1_score, classification_report
 
 # from features import extract_dataset_features  # uncomment once features.py is finalized
 
+MODEL_PATH = "trained_model.pkl"
 
 # load dataset (rhian)
 def load_annotated_data(csv_path: str):
@@ -192,6 +193,9 @@ def train_and_pickle():
     # --- 7. Save model and vectorizer together to disk (Lance) ---
     #   with open("trained_model.pkl", "wb") as f:
     #       pickle.dump({"model": model, "vectorizer": vec}, f)
+    with open(MODEL_PATH, "wb") as f:
+        pickle.dump({"model": model, "vectorizer": vec, "model_name": best_name}, f)
+    print(f"\nSaved trained model -> {MODEL_PATH} (model_name='{best_name}')")
 
     return best_name, model, vec
 
