@@ -18,10 +18,11 @@ import pandas as pd
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction import DictVectorizer
 from sklearn.tree import DecisionTreeClassifier
-from sklearn.naive_bayes import GaussianNB
+#from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import MultinomialNB # Will try multinomial if more accurate #DitoAngTingin
 from sklearn.metrics import accuracy_score, f1_score, classification_report
 
-# from features import extract_dataset_features  # uncomment once features.py is finalized
+from features import extract_dataset_features  # uncomment once features.py is finalized
 
 MODEL_PATH = "trained_model.pkl"
 
@@ -122,10 +123,15 @@ def train_and_select_model(X_train_vec, y_train, X_val_vec, y_val, verbose=True)
         "params": {"max_depth": best_dt_depth},
     }
 
-    # Naive Bayes
-    nb = GaussianNB()
-    nb.fit(X_train_vec.toarray(), y_train)
-    nb_val_pred = nb.predict(X_val_vec.toarray())
+    # Naive Bayes #DitoAngTingin
+    #nb = GaussianNB()
+    #nb.fit(X_train_vec.toarray(), y_train)
+    #nb_val_pred = nb.predict(X_val_vec.toarray())
+
+    nb = MultinomialNB()
+    nb.fit(X_train_vec, y_train)
+    nb_val_pred = nb.predict(X_val_vec)
+
     candidates["naive_bayes"] = {
         "model": nb,
         "val_f1_macro": f1_score(y_val, nb_val_pred, average="macro", zero_division=0),
