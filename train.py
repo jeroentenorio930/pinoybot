@@ -11,12 +11,6 @@ Pipeline:
   5. Model training/tuning (Xan)             -- Decision Tree vs Naive Bayes
   6. Validation performance check (Xan)
   7. Save model + vectorizer to disk (Lance)
-
-NOTE: dataset_annotation.csv must already be cleaned via compile_dataset.py
-(run separately, once) into annotated_dataset_clean.csv before this script
-is run. See compile_dataset.py for details on what cleaning is applied,
-including the decision to DROP rows with missing token text rather than
-placeholder-fill them.
 """
 
 import pickle
@@ -42,8 +36,9 @@ def load_annotated_data(csv_path: str):
         tags:      List[List[str]]  -- tag per token, same shape as sentences
     """
     df = pd.read_csv(csv_path)
-    df["tag"] = df["tag"].astype(str).str.strip().str.upper()
+    df["tag"] = df["tag"].astype(str).str.strip().str.upper() # this is js a safety net since compile_dataset.py alr did this
 
+    # csv is stored as one row per token so we just group rows back into sentences here
     sentences, tags = [], []
     for _, group in df.sort_values("token_id").groupby("sentence_id", sort=True):
         sentences.append(group["token"].tolist())
@@ -51,20 +46,22 @@ def load_annotated_data(csv_path: str):
 
     return sentences, tags
 
-
 # 3. train/validation/test split (rhian)
-
 def split_dataset(sentences, tags, train_size=0.70, val_size=0.15, test_size=0.15, random_state=42):
     """
-    Splits at the SENTENCE level (never token level) into 70/15/15
+    Splits at the sentence level (never token level) into 70/15/15
     train/val/test, so context-dependent features (prev/next word, char
     n-grams) never leak information across splits.
     """
     assert abs(train_size + val_size + test_size - 1.0) < 1e-9, "splits must sum to 1.0"
 
+    # train_test_split only splits two-way, so we split off train first, then split whatever's left into val/test in a second pass
     sent_train, sent_temp, tag_train, tag_temp = train_test_split(
         sentences, tags, train_size=train_size, random_state=random_state
     )
+    
+    # relative_val recalculates what fraction of the leftover 30% should go to val and test, so we still end up at the original 70/15/15 on the full dataset
+    # (val_size=0.15, test_size=0.15 -> relative_val=0.5, i.e. split temp 50/50)
     relative_val = val_size / (val_size + test_size)
     sent_val, sent_test, tag_val, tag_test = train_test_split(
         sent_temp, tag_temp, train_size=relative_val, random_state=random_state
@@ -84,9 +81,7 @@ def flatten(sents, tag_lists):
         y.extend(sent_tags)
     return X, y
 
-
 # 4-6. vectorization + model training/tuning + validation check (xan)
-
 def vectorize_features(X_train, X_val, X_test):
     """
     Fits a DictVectorizer on the training feature dicts and transforms
@@ -98,7 +93,6 @@ def vectorize_features(X_train, X_val, X_test):
     X_val_vec = vec.transform(X_val)
     X_test_vec = vec.transform(X_test)
     return vec, X_train_vec, X_val_vec, X_test_vec
-
 
 def train_and_select_model(X_train_vec, y_train, X_val_vec, y_val, verbose=True):
     """
@@ -160,25 +154,25 @@ def train_and_select_model(X_train_vec, y_train, X_val_vec, y_val, verbose=True)
 
 # main training entry point
 def train_and_pickle():
-    # --- 1. Load annotated dataset (Rhian) ---
+    # 1. load annotated dataset (rhian)
     sentences, tags = load_annotated_data("annotated_dataset_clean.csv")
 
-    # --- 3. Train/val/test split (Rhian) ---
+    # 3. train/val/test split (rhian)
     splits = split_dataset(sentences, tags)
     train_sents, train_tags = splits["train"]
     val_sents, val_tags     = splits["val"]
     test_sents, test_tags   = splits["test"]
 
-    # --- 2. Convert raw sentences into feature dictionaries (features.py) ---
+    # 2. convert raw sentences into feature dictionaries (features.py)
     X_train, y_train = flatten(train_sents, train_tags)
     X_val,   y_val   = flatten(val_sents, val_tags)
     X_test,  y_test  = flatten(test_sents, test_tags)
 
-    # --- 4. Vectorize features (Xan) ---
+    # 4. vectorize features (xan) ---
     vec, X_train_vec, X_val_vec, X_test_vec = vectorize_features(X_train, X_val, X_test)
 
-    # --- 5. Train + tune Decision Tree vs Naive Bayes, pick best (Xan) ---
-    # --- 6. Validation performance check (Xan) ---
+    # 5. train + tune Decision Tree vs Naive Bayes, pick best (xan)
+    # 6. validation performance check (xan)
     best_name, model, candidates = train_and_select_model(
         X_train_vec, y_train, X_val_vec, y_val
     )
@@ -190,7 +184,7 @@ def train_and_pickle():
     print(f"accuracy={accuracy_score(y_test, test_pred):.4f} "
           f"f1_macro={f1_score(y_test, test_pred, average='macro', zero_division=0):.4f}")
 
-    # --- 7. Save model and vectorizer together to disk (Lance) ---
+    # 7. save model and vectorizer together to disk (lance) ---
     #   with open("trained_model.pkl", "wb") as f:
     #       pickle.dump({"model": model, "vectorizer": vec}, f)
     with open(MODEL_PATH, "wb") as f:
@@ -198,7 +192,6 @@ def train_and_pickle():
     print(f"\nSaved trained model -> {MODEL_PATH} (model_name='{best_name}')")
 
     return best_name, model, vec
-
 
 if __name__ == "__main__":
     train_and_pickle()
