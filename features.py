@@ -4,7 +4,7 @@ from typing import List, Dict, Any
 
 FILIPINO_AFFIXES = {
     "nag", "na", "pina", "pa", "pag", "mag", "ipag", "ka", "i",
-    "um", "in", "an", "ma", "naka", "nakaka", "mapa", "pinaka"
+    "um", "in", "an", "ma", "naka", "nakaka", "mapa", "pinaka",
     # you guys can extend the list pa if may iba kayong naiisip
 }
 
@@ -52,6 +52,52 @@ def extract_hyphen_affix_features(word: str) -> Dict[str, Any]:
 
     return features
 
+def get_max_consecutive_consonants(word: str) -> int:
+    """
+    this counts the maximum number of consecutive consonants in a word.
+    """
+    max_count = 0
+    current_count = 0
+    for char in word.lower():
+        if char.isalpha() and char not in "aeiou":
+            current_count += 1
+            max_count = max(max_count, current_count)
+        else:
+            current_count = 0
+    return max_count
+
+def extract_fused_affix_features(word: str) -> Dict[str, Any]:
+    """
+    this is to detects the intra-word code-switching without hyphens (e.g., 'ipost', 'naglunch').
+    """
+    features = {
+        "has_fused_filipino_affix": False,
+        "fused_root_looks_foreign": False
+    }
+    
+    # If it has a hyphen, Rhian's function already handles it
+    if "-" in word:
+        return features
+        
+    word_lower = word.lower()
+    longest_affix = ""
+    
+    # Find the longest matching prefix
+    for affix in FILIPINO_AFFIXES:
+        if word_lower.startswith(affix):
+            if len(word_lower) >= len(affix) + 3:
+                if len(affix) > len(longest_affix):
+                    longest_affix = affix
+                    
+    if longest_affix:
+        features["has_fused_filipino_affix"] = True
+        root = word_lower[len(longest_affix):]
+        
+        if looks_foreign(root) or get_max_consecutive_consonants(root) >= 2:
+            features["fused_root_looks_foreign"] = True
+            
+    return features
+
 # This is JR
 def extract_ngram (word: str) -> Dict[str, Any]:
     """
@@ -79,6 +125,18 @@ def extract_ngram (word: str) -> Dict[str, Any]:
     vowel_count = sum(1 for char in word_lower if char in vowels)
     features["vowel_ratio"] = vowel_count / word_length if word_length > 0 else 0.0
 
+    # detects abbrevs
+    features["has_no_vowels"] = (vowel_count == 0 and word_length > 0 and word.isalpha())
+
+    # consonant clusers
+    features["max_consecutive_consonants"] = get_max_consecutive_consonants(word)
+    features["ends_with_consonant_cluster"] = False
+    if word_length >= 2:
+        last_two = word_lower[-2:]
+        if last_two[0].isalpha() and last_two[1].isalpha():
+            if last_two[0] not in vowels and last_two[1] not in vowels:
+                features["ends_with_consonant_cluster"] = True
+
     # check if naulit yung syllable (idk how to call it)
     # features["has_2char_reduplication"] = (word_length >= 4 and word_lower[:2] == word_lower[2:4])
     # features["has_3char_reduplication"] = (word_length >= 6 and word_lower[:3] == word_lower[3:6])
@@ -91,11 +149,14 @@ def extract_context(tokens: List[str], index: int) -> Dict[str, Any]:
     (previous and next words) to capture context clues.
     """
     features = {}
-    
+    word = tokens[index]
+
     # sentence end flags
     features["is_start_of_sentence"] = (index == 0)
     features["is_end_of_sentence"] = (index == len(tokens) - 1)
 
+    features["is_capitalized_mid_sentence"] = (word.istitle() and not features["is_start_of_sentence"])
+    
     # previous word
     if index > 0:
         prev_word = tokens[index - 1]
@@ -194,10 +255,13 @@ def extract_word_features(tokens: List[str], index: int) -> Dict[str, Any]:
     features = {}
 
     features.update(extract_hyphen_affix_features(word))
+    features.update(extract_fused_affix_features(word))
     features.update(extract_ngram(word))
     features.update(extract_context(tokens, index))
     features.update(extract_symbols_and_numbers(word))
     features.update(extract_reduplication(word_lower))
+
+    features["word_lower"] = word_lower
 
     return features
 
