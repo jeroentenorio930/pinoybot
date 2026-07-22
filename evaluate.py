@@ -1,11 +1,10 @@
 """
 evaluate.py
 
-Tthis reproduces the exact same 70/15/15 sentence-level split
-as train.py (same random_state=42), so the "test" set here is guaranteed
-to be the same test set the model never saw during training or
-validation. Do NOT change random_state here unless you also change it
-in train.py, or the split will no longer match.
+Evaluates the trained model using the same 70/15/15 sentence-level split
+created in train.py. Since both files use random_state=42, the test set
+generated here is identical to the one the model never saw during training
+or validation.
 """
 
 import pickle
@@ -22,8 +21,8 @@ from train import load_annotated_data, split_dataset, flatten, MODEL_PATH
 
 LABELS = ["ENG", "FIL", "CS", "OTH"]
 
-
 def load_model_bundle(model_path: str = MODEL_PATH):
+    """Loads the trained model, vectorizer, and model name from disk."""
     with open(model_path, "rb") as f:
         bundle = pickle.load(f)
     return bundle["model"], bundle["vectorizer"], bundle["model_name"]
@@ -31,14 +30,16 @@ def load_model_bundle(model_path: str = MODEL_PATH):
 
 def get_test_set(csv_path: str = "annotated_dataset_clean.csv"): # for testing, use tiny_dataset.csv and refer to instructions in test_metrics.py
     """Reproduces the same test split used in train.py."""
-    sentences, tags = load_annotated_data(csv_path)
-    splits = split_dataset(sentences, tags)
+    sentences, tags = load_annotated_data(csv_path) 
+    splits = split_dataset(sentences, tags) # Generate the same dataset split
     test_sents, test_tags = splits["test"]
-    X_test, y_test = flatten(test_sents, test_tags)
+    
+    X_test, y_test = flatten(test_sents, test_tags) # Convert sentences into token-level samples
     return X_test, y_test
 
 
 def evaluate(model_path: str = MODEL_PATH):
+    """Evaluates the trained model on the held-out test set."""
     print("Loading model...")
     model, vec, model_name = load_model_bundle(model_path)
     print(f"Loaded model_name='{model_name}' (from {model_path})")
@@ -46,8 +47,8 @@ def evaluate(model_path: str = MODEL_PATH):
     print("Rebuilding test set (same split as train.py, random_state=42)...")
     X_test, y_test = get_test_set()
 
-    X_test_vec = vec.transform(X_test)
-    y_pred = model.predict(X_test_vec)
+    X_test_vec = vec.transform(X_test) # Convert test tokens into feature vectors
+    y_pred = model.predict(X_test_vec) # Generate predictions
 
     acc = accuracy_score(y_test, y_pred)
     precision, recall, f1, support = precision_recall_fscore_support(
@@ -77,7 +78,6 @@ def evaluate(model_path: str = MODEL_PATH):
         "per_label": dict(zip(LABELS, zip(precision, recall, f1, support))),
         "confusion_matrix": cm,
     }
-
 
 if __name__ == "__main__":
     evaluate()
