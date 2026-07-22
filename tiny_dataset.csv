@@ -1,8 +1,8 @@
 sentence_id,token_id,token,tag
 0,0,Ang,FIL
 0,1,ganda,FIL
-0,2,ng,FIL
-0,3,araw,FIL
+0,2,ni,FIL
+0,3,Odette,OTH
 0,4,.,OTH
 1,0,I,ENG
 1,1,love,ENG
@@ -17,7 +17,7 @@ sentence_id,token_id,token,tag
 3,2,ng,FIL
 3,3,pizza,ENG
 3,4,.,OTH
-4,0,She,ENG
+4,0,Leif,OTH
 4,1,is,ENG
 4,2,my,ENG
 4,3,best,ENG
