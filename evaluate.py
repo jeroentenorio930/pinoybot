@@ -1,5 +1,7 @@
 """
-This reproduces the exact same 70/15/15 sentence-level split
+evaluate.py
+
+Tthis reproduces the exact same 70/15/15 sentence-level split
 as train.py (same random_state=42), so the "test" set here is guaranteed
 to be the same test set the model never saw during training or
 validation. Do NOT change random_state here unless you also change it
@@ -20,13 +22,14 @@ from train import load_annotated_data, split_dataset, flatten, MODEL_PATH
 
 LABELS = ["ENG", "FIL", "CS", "OTH"]
 
+
 def load_model_bundle(model_path: str = MODEL_PATH):
     with open(model_path, "rb") as f:
         bundle = pickle.load(f)
     return bundle["model"], bundle["vectorizer"], bundle["model_name"]
 
 
-def get_test_set(csv_path: str = "annotated_dataset_clean.csv"):
+def get_test_set(csv_path: str = "annotated_dataset_clean.csv"): # for testing, use tiny_dataset.csv and refer to instructions in test_metrics.py
     """Reproduces the same test split used in train.py."""
     sentences, tags = load_annotated_data(csv_path)
     splits = split_dataset(sentences, tags)
@@ -35,18 +38,15 @@ def get_test_set(csv_path: str = "annotated_dataset_clean.csv"):
     return X_test, y_test
 
 
-def evaluate():
+def evaluate(model_path: str = MODEL_PATH):
     print("Loading model...")
-    model, vec, model_name = load_model_bundle()
-    print(f"Loaded model_name='{model_name}'")
+    model, vec, model_name = load_model_bundle(model_path)
+    print(f"Loaded model_name='{model_name}' (from {model_path})")
 
     print("Rebuilding test set (same split as train.py, random_state=42)...")
     X_test, y_test = get_test_set()
 
     X_test_vec = vec.transform(X_test)
-    if model_name == "naive_bayes":
-        X_test_vec = X_test_vec.toarray()
-
     y_pred = model.predict(X_test_vec)
 
     acc = accuracy_score(y_test, y_pred)
@@ -77,6 +77,7 @@ def evaluate():
         "per_label": dict(zip(LABELS, zip(precision, recall, f1, support))),
         "confusion_matrix": cm,
     }
+
 
 if __name__ == "__main__":
     evaluate()

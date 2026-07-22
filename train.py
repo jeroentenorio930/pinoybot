@@ -190,7 +190,7 @@ def train_and_pickle():
     print(f"accuracy={accuracy_score(y_test, test_pred):.4f} "
           f"f1_macro={f1_score(y_test, test_pred, average='macro', zero_division=0):.4f}")
 
-    # 7. save model and vectorizer together to disk (lance) ---
+    # 7. save model and vectorizer together to disk (lance) 
     #   with open("trained_model.pkl", "wb") as f:
     #       pickle.dump({"model": model, "vectorizer": vec}, f)
     with open(MODEL_PATH, "wb") as f:

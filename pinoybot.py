@@ -63,8 +63,8 @@ def tag_language(tokens: List[str]) -> List[str]:
     # 3. Use the model to predict the tags for each token
     #    Example: predicted = model.predict(features)
     X = _vectorizer.transform(feature_dicts)
-    if _model_name == "naive_bayes":
-        X = X.toarray()
+    #if _model_name == "naive_bayes":
+    #    X = X.toarray()
 
     predicted = _model.predict(X)
 
