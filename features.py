@@ -36,64 +36,30 @@ def extract_hyphen_affix_features(word: str) -> Dict[str, Any]:
         "hyphen_is_numeral_prefix": False,
         "hyphen_affix_exact_match": False,
         "hyphen_root_looks_foreign": False,
-        "hyphen_root_is_ultra_short": False,  # <-- NEW FEATURE
     }
 
     if "-" not in word:
         return features
     
-    parts = word.split("-", 1)
+    parts = word.split("-", 1) #we split the prefix and the rest of the word (only first hyphen)
     if len(parts) != 2 or not parts[0] or not parts[1]:
         return features
 
     prefix, root = parts[0].lower(), parts[1]
 
+    # step 0 - numerical prefix ("12-wheeler", "22-anyos")
     if prefix.isdigit():
         features["hyphen_is_numeral_prefix"] = True
         features["hyphen_root_looks_foreign"] = looks_foreign(root)
         return features
     
+    # step 1 - exact affix match (not substring or startswith)
     if prefix in FILIPINO_AFFIXES:
         features["hyphen_affix_exact_match"] = True
+
+        #step 2 - only meaningful once step 1 holds
         features["hyphen_root_looks_foreign"] = looks_foreign(root)
-        
-        # Check if the root is an ultra-short word (1 to 3 letters)
-        if 0 < len(root) <= 3:
-            features["hyphen_root_is_ultra_short"] = True
 
-    return features
-
-def extract_fused_affix_features(word: str) -> Dict[str, Any]:
-    features = {
-        "has_fused_filipino_affix": False,
-        "fused_root_looks_foreign": False,
-        "fused_root_is_ultra_short": False,  # <-- NEW FEATURE
-    }
-    
-    if "-" in word:
-        return features
-        
-    word_lower = word.lower()
-    longest_affix = ""
-    
-    for affix in FILIPINO_AFFIXES:
-        if word_lower.startswith(affix):
-            # Lowered the minimum root length requirement to 2 to catch words like "do" or "go"
-            if len(word_lower) >= len(affix) + 2:
-                if len(affix) > len(longest_affix):
-                    longest_affix = affix
-                    
-    if longest_affix:
-        features["has_fused_filipino_affix"] = True
-        root = word_lower[len(longest_affix):]
-        
-        if looks_foreign(root) or get_max_consecutive_consonants(root) >= 2:
-            features["fused_root_looks_foreign"] = True
-            
-        # Check if the fused root is an ultra-short word (1 to 3 letters)
-        if 0 < len(root) <= 3:
-            features["fused_root_is_ultra_short"] = True
-            
     return features
 
 def get_max_consecutive_consonants(word: str) -> int:
