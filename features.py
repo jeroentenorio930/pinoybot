@@ -5,6 +5,9 @@ from typing import List, Dict, Any
 FILIPINO_AFFIXES = {
     "nag", "na", "pina", "pa", "pag", "mag", "ipag", "ka", "i",
     "um", "in", "an", "ma", "naka", "nakaka", "mapa", "pinaka",
+    "pagka", "pagkaka", "kina", "pinakama", "ipinaka", "mapapa",
+    "napapa", "nagpapa", "magpapa", "makikita", "pinapa"
+    
     # you guys can extend the list pa if may iba kayong naiisip
 }
 
