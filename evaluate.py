@@ -61,7 +61,7 @@ def evaluate(model_path: str = MODEL_PATH):
 
     print(f"{'Label':6s}{'Precision':>12s}{'Recall':>10s}{'F1-score':>10s}{'Support':>10s}")
     for label, p, r, f, s in zip(LABELS, precision, recall, f1, support):
-        print(f"{label:6s}{p:12.4f}{r:10.4f}{f:10.4f}{s:10d}")
+        print(f"{label:6s}{p:12.4f}{r:10.4f}{f:10.4f}{int(s):10d}")
 
     print("\n--- Full classification report (incl. macro/weighted avg) ---")
     print(classification_report(y_test, y_pred, labels=LABELS, zero_division=0))

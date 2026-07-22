@@ -75,13 +75,6 @@ def tag_language(tokens: List[str]) -> List[str]:
     # 5. Return the list of tags
     return tags
 
-    # You can define other functions, import new libraries, or add other Python files as needed, as long as
-    # the tag_language function is retained and correctly accomplishes the expected task.
-
-    # Currently, the bot just tags every token as FIL. Replace this with your more intelligent predictions.
-    
-    # return ['FIL' for i in tokens] # Balikan to mamaya
-
 if __name__ == "__main__":
     # Example usage
     example_tokens = ["Love", "kita", "."]
