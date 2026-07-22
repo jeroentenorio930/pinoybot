@@ -77,7 +77,25 @@ def tag_language(tokens: List[str]) -> List[str]:
 
 if __name__ == "__main__":
     # Example usage
-    example_tokens = ["Love", "kita", "."]
-    print("Tokens:", example_tokens)
-    tags = tag_language(example_tokens)
-    print("Tags:  ", tags)
+    print("PinoyBot quick demo. Type a sentence (tokens separated by spaces).")
+    print("Type 'quit' or 'exit' to stop.\n")
+ 
+    while True:
+        try:
+            sentence = input(">> ").strip()
+        except (EOFError, KeyboardInterrupt):
+            print("\nBye!")
+            break
+ 
+        if not sentence:
+            continue
+        if sentence.lower() in ("quit", "exit"):
+            print("Bye!")
+            break
+ 
+        tokens = sentence.split()
+        tags = tag_language(tokens)
+ 
+        for tok, tag in zip(tokens, tags):
+            print(f"  {tok!r:20s} -> {tag}")
+        print()
