@@ -6,7 +6,9 @@ FILIPINO_AFFIXES = {
     "nag", "na", "pina", "pa", "pag", "mag", "ipag", "ka", "i",
     "um", "in", "an", "ma", "naka", "nakaka", "mapa", "pinaka",
     "pagka", "pagkaka", "kina", "pinakama", "ipinaka", "mapapa",
-    "napapa", "nagpapa", "magpapa", "makikita", "pinapa"
+    "napapa", "nagpapa", "magpapa", "makikita", "pinapa", "tig", 
+    "taga", "tagapag", "maka", "mala", "tag", "naki", "pinag", "nagka", 
+    "nakaka", "paki", "kaka", "ka", 
     
     # you guys can extend the list pa if may iba kayong naiisip
 }
